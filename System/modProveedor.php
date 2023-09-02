@@ -16,7 +16,7 @@ if(isset($prov)){
     mysqli_close($conexion);
 }else{
     mysqli_query($conexion, "UPDATE proveedores SET proveedor = '$nombreFinal' WHERE id_Proveedor = '$idFinal'");
-    header("Location: ./proveedores.php?ok");
+    header("Location: ./proveedores.php?mod");
     mysqli_close($conexion);
 }
 ?>

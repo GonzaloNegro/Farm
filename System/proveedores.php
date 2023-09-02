@@ -21,6 +21,15 @@ include('../Modelo/Conexion.php');
                 });
     }	
 </script>
+<script type="text/javascript">
+    function mod(){
+        swal.fire(  {title: "Datos modificados correctamente!",
+                icon: "success",
+                showConfirmButton: true,
+                showCancelButton: false,
+                });
+    }	
+</script>
 
 <center>
 	<div class="">
@@ -56,5 +65,6 @@ while($listar = mysqli_fetch_array($consulta))
 $conexion->close();
 ?>
 <?php if(isset($_GET['ok'])){ ?> <script>ok();</script><?php }?>
-<?php if(isset($_GET['error'])){ ?> <script>err();</script><?php }?>
+<?php if(isset($_GET['error'])){ ?> <script>error();</script><?php }?>
+<?php if(isset($_GET['mod'])){ ?> <script>mod();</script><?php }?>
 </body>

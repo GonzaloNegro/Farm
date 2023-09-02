@@ -3,7 +3,9 @@ include('../Template/Cabecera.php');
 include('../Modelo/Conexion.php');
 error_reporting(0);
 
-$consulta = Consultar($_GET['no']);
+//LLAMO A LA FUNCION CONSULTAR Y POR PARAMETRO LE PASO EL VALOR
+//QUE TRARIGO MEDIANTE EL METODO GET QUE SERIA EL ID
+$consulta = Consultar($_GET['no']);//
 
 function Consultar($no_id)
 {	
@@ -13,12 +15,11 @@ function Consultar($no_id)
 	$filas = mysqli_fetch_assoc($resultado);
 	return [
 		$filas['id_Categoria'],/*0*/
-		$filas['nombreCategoria'],
+		$filas['nombreCategoria'],/* 1 */
 	];
 }
 $id = $consulta[0];
 $cat = $consulta[1];
-
 ?>
 
 <script>

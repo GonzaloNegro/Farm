@@ -2,6 +2,10 @@
 session_start();
 include ("../Modelo/Conexion.php");
 
+date_default_timezone_set('UTC');
+date_default_timezone_set("America/Buenos_Aires");
+$fechaActual = date('Y-m-d');
+
 if (isset($_POST)){
 
 // Captura los datos ingresados en el formulario
@@ -45,6 +49,16 @@ if(file_exists($_FILES['fichero']['tmp_name'])){
         mysqli_query($conexion, "INSERT INTO archivos VALUES (DEFAULT, '$nombre', '".$url."')");
     }
 };
+
+$header = 'Enviado desde Don Juan S.R.L.';
+$asunto = "Se ha cargado una nueva compra";
+$destinatario = 'luciladolce@hotmail.com';
+$fec = date("d-m-Y", strtotime($fechaActual));
+$mensaje = "El día ".$fec." se ha registrado una nueva compra.\nPor favor ingrese a https://donjuansrl.online/ para ver más detalles.";
+
+$mensajeCompleto = $mensaje . "\Don Juan S.R.L.";
+
+mail($destinatario, $asunto, $mensajeCompleto, $header);
 
 header("Location: ./verCompras.php?ok");
 mysqli_close($conexion);

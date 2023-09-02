@@ -472,6 +472,7 @@ while($listar = mysqli_fetch_array($consulta)){
 					date_default_timezone_set('UTC');
 					date_default_timezone_set("America/Buenos_Aires");
 					$fechaActual = date('Y-m-d');
+					$mensaje = "";
 
 					$cantidadRegistros = 0;
 					$consulta=mysqli_query($conexion, "SELECT p.id_Proyecto, p.nombreProyecto, ds.fechaCierre AS fcs, dh.fechaCierre AS fch, da.fechaCierre AS fca, t.tipoProyecto, ds.fechaInicio AS fis, dh.fechaInicio AS fih, da.fechaInicio AS fia, p.id_EstadoProyecto
@@ -491,23 +492,24 @@ while($listar = mysqli_fetch_array($consulta)){
 							$fechabd = $listar['fca'];
 						}
 						
-					$fec1bd = $fechabd;
-					$fec1actual = $fechaActual;
+						$fec1bd = $fechabd;
+						$fec1actual = $fechaActual;
 
-					$segundosFechabd = strtotime($fec1bd);
-					$segundosFechaactual = strtotime($fec1actual);
-					
-					$segundosTranscurridos = $segundosFechabd - $segundosFechaactual;
-					$minutosTranscurridos = $segundosTranscurridos / 60;
-					$horas = $minutosTranscurridos / 60;
-					$dias = $horas / 24;
-					$diasRedondedos = floor($dias);
+						$segundosFechabd = strtotime($fec1bd);
+						$segundosFechaactual = strtotime($fec1actual);
+						
+						$segundosTranscurridos = $segundosFechabd - $segundosFechaactual;
+						$minutosTranscurridos = $segundosTranscurridos / 60;
+						$horas = $minutosTranscurridos / 60;
+						$dias = $horas / 24;
+						$diasRedondedos = floor($dias);
 
-					if($diasRedondedos < 30){
-						echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li>";
-						echo "<hr/>";
-						$cantidadRegistros++;
-					}
+						if($diasRedondedos < 30){
+							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li>";
+							echo "<hr/>";
+							$mensaje = $mensaje + "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li><br/>";
+							$cantidadRegistros++;
+						}
 
 
 /* ----------------------------PROYECTOS POR COMENZAR ---------------------------------------- */
@@ -535,9 +537,10 @@ while($listar = mysqli_fetch_array($consulta)){
 						if($listar['id_EstadoProyecto'] == 1 AND $diasRedondedos2 < 30){
 							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
 							echo "<hr/>";
+							$mensaje = $mensaje + "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
 							$cantidadRegistros++;
 						}
-
+						
 					}
 
 					if($cantidadRegistros == 0){

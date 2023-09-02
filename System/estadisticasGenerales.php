@@ -25,8 +25,7 @@ error_reporting(0);
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
 <?php    
-          $SQL = "SELECT * FROM detallesiembra ds
-                  INNER jOIN proyectos p ON p.id_Proyecto = ds.id_Proyecto";          
+          $SQL = "SELECT * FROM proyectos WHERE id_EstadoProyecto = 2";
      
           $consulta = mysqli_query($conexion, $SQL);
           while ($resultado = mysqli_fetch_assoc($consulta)){

@@ -16,7 +16,7 @@ if(isset($cat)){
     mysqli_close($conexion);
 }else{
     mysqli_query($conexion, "UPDATE categoria SET nombreCategoria = '$nombreFinal' WHERE id_Categoria = '$idFinal'");
-    header("Location: ./categorias.php?ok");
+    header("Location: ./categorias.php?mod");
     mysqli_close($conexion);
 }
 ?>

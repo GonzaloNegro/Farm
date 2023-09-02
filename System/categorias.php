@@ -23,6 +23,15 @@ error_reporting(0);
                 });
     }	
 </script>
+<script type="text/javascript">
+    function mod(){
+        swal.fire(  {title: "Datos modificados correctamente!",
+                icon: "success",
+                showConfirmButton: true,
+                showCancelButton: false,
+                });
+    }	
+</script>
 
 <center>
 	<div class="">
@@ -44,7 +53,7 @@ error_reporting(0);
 		</tr>
 		</thead>
 	   <?php
-$consulta=mysqli_query($conexion, "SELECT * FROM categoria ORDER BY nombreCategoria ASC");
+$consulta=mysqli_query($conexion, "SELECT * FROM categoria ORDER BY id_Categoria ASC");
 while($listar = mysqli_fetch_array($consulta))
 {
 	echo "
@@ -58,5 +67,6 @@ while($listar = mysqli_fetch_array($consulta))
 $conexion->close();
 ?>
 <?php if(isset($_GET['ok'])){ ?> <script>ok();</script><?php }?>
-<?php if(isset($_GET['error'])){ ?> <script>err();</script><?php }?>
+<?php if(isset($_GET['error'])){ ?> <script>error();</script><?php }?>
+<?php if(isset($_GET['mod'])){ ?> <script>mod();</script><?php }?>
 </body>

@@ -120,7 +120,7 @@ error_reporting(0);
                 <select id="nombreProyecto" name="nombreProyecto" required>
                     <option value="" selected disabled="nombreProyecto">-Seleccione una-</option>
                     <?php
-                    $consulta= "SELECT * FROM Proyectos ORDER BY nombreProyecto ASC";
+                    $consulta= "SELECT * FROM proyectos ORDER BY nombreproyecto ASC";
                     $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($datos_base));
                     ?>
                     <?php foreach ($ejecutar as $opciones): ?> 

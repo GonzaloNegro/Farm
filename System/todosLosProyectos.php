@@ -166,16 +166,16 @@ function mod(){
                 $query ="SELECT pr.id_Proyecto, pr.nombreProyecto, p.id_Parcela, tp.tipoProyecto, pr.cantidadHas, ep.estado
 				FROM proyectos pr
                 INNER JOIN parcela p ON p.id_Parcela = pr.id_Parcela
-				INNER JOIN tipoProyecto tp ON pr.id_tipoProyecto = tp.id_tipoProyecto
-				INNER JOIN estadoProyecto ep ON pr.id_EstadoProyecto = ep.id_EstadoProyecto
+				INNER JOIN tipoproyecto tp ON pr.id_tipoProyecto = tp.id_tipoProyecto
+				INNER JOIN estadoproyecto ep ON pr.id_EstadoProyecto = ep.id_EstadoProyecto
 				ORDER BY pr.id_Proyecto ";
         }else{
 
                 $query = "SELECT pr.id_Proyecto, pr.nombreProyecto, p.id_Parcela, tp.tipoProyecto, pr.cantidadHas, ep.estado
 				FROM proyectos pr
                 INNER JOIN parcela p ON p.id_Parcela = pr.id_Parcela
-				INNER JOIN tipoProyecto tp ON pr.id_tipoProyecto = tp.id_tipoProyecto
-				INNER JOIN estadoProyecto ep ON pr.id_EstadoProyecto = ep.id_EstadoProyecto ";
+				INNER JOIN tipoproyecto tp ON pr.id_tipoProyecto = tp.id_tipoProyecto
+				INNER JOIN estadoproyecto ep ON pr.id_EstadoProyecto = ep.id_EstadoProyecto ";
 
                 if ($_POST["buscar"] != '' ){ 
                         $query .= " WHERE (pr.nombreProyecto LIKE LOWER('%".$aKeyword[0]."%')) ";

@@ -143,7 +143,7 @@ function ValidarFechas()
         <select name="cmbCategoria" required>
         <option value="" selected disabled="cmbcategoria">-Seleccione una-</option>
         <?php
-        $consulta= "SELECT * FROM Categoria";
+        $consulta= "SELECT * FROM categoria";
         $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($datos_base));
         ?>
         <?php foreach ($ejecutar as $opciones): ?> 

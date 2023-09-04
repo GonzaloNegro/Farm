@@ -49,14 +49,14 @@ $parcela = $_GET['no'];
 			<th style="text-align:center;font-size:16pt;text-align:right;padding-right:5px;border-right: 2px solid green">Dimension</th>
 			<th style="text-align:center;font-size:16pt;text-align:right;padding-right:5px;border-right: 2px solid green">Has Ocupadas</th>
 			<th style="text-align:center;font-size:16pt;text-align:right;padding-right:5px;border-right: 2px solid green">Has Disponibles</th>
-			<th style="text-align:center;font-size:16pt;text-align:right;padding-right:5px;">Proyectos Activos</th>					
+			<th style="text-align:center;font-size:16pt;text-align:right;padding-right:5px;">proyectos Activos</th>					
 		</tr>
 		</thead>
 	   <?php
 		$consulta=mysqli_query($conexion, "SELECT p.id_Parcela, 
 		p.dimension, sum(pr.cantidadHas) AS cantHas, p.dimension - sum(pr.cantidadHas) AS hasDisp, count(pr.id_Proyecto) AS cantPro
 		FROM parcela p
-		LEFT JOIN Proyectos pr on p.id_Parcela = pr.id_Parcela
+		LEFT JOIN proyectos pr on p.id_Parcela = pr.id_Parcela
 		WHERE p.id_Parcela = '$parcela'");
 		while($listar = mysqli_fetch_array($consulta))
 		{
@@ -140,9 +140,9 @@ $parcela = $_GET['no'];
 
 		$consulta=mysqli_query($conexion, "SELECT
 		pr.id_Proyecto, pr.nombreProyecto, dh.fechaInicio, dh.fechaCierre, pr.cantidadHas, dh.cantidadCabezas, c.nombreCategoria, dh.inversion, dh.id_Moneda AS monHac, dh.tipoCambio AS tipoCambHac, pr.id_EstadoProyecto
-		FROM Proyectos pr
-		INNER JOIN detalleHacienda dh ON pr.id_Proyecto = dh.id_Proyecto
-		INNER JOIN Categoria c ON c.id_Categoria = dh.id_Categoria
+		FROM proyectos pr
+		INNER JOIN detallehacienda dh ON pr.id_Proyecto = dh.id_Proyecto
+		INNER JOIN categoria c ON c.id_Categoria = dh.id_Categoria
 		WHERE pr.id_Parcela = '$parcela' AND pr.id_EstadoProyecto = 2 AND dh.fechaCierre > '$fechaActual'");
 		while($listar = mysqli_fetch_array($consulta))
 		{
@@ -254,9 +254,9 @@ $parcela = $_GET['no'];
 		$consulta=mysqli_query($conexion, "SELECT 
 		pr.id_Proyecto, pr.nombreProyecto, ds.fechaInicio, ds.fechaCierre, pr.cantidadHas, c.nombreCultivo, ds.id_Moneda AS monSiem, ds.tipoCambio AS tipoCambSiem,
 		ds.inversion, (pr.cantidadHas * c.rindeEsperadoHas) AS rinde
-		FROM Proyectos pr
-		INNER JOIN detalleSiembra ds ON pr.id_Proyecto = ds.id_Proyecto
-		INNER JOIN Cultivos c ON c.id_Cultivo = ds.id_Cultivo
+		FROM proyectos pr
+		INNER JOIN detallesiembra ds ON pr.id_Proyecto = ds.id_Proyecto
+		INNER JOIN cultivos c ON c.id_Cultivo = ds.id_Cultivo
 		WHERE pr.id_Parcela = '$parcela' AND pr.id_EstadoProyecto = 2 AND ds.fechaCierre > '$fechaActual'");
 		while($listar = mysqli_fetch_array($consulta))
 		{
@@ -368,7 +368,7 @@ $parcela = $_GET['no'];
 
 		$consulta=mysqli_query($conexion, "SELECT
 		pr.id_Proyecto, pr.nombreProyecto, da.fechaInicio, da.fechaCierre, pr.cantidadHas, da.montoEstipulado, da.id_Moneda AS monAlq, da.tipoCambio AS tipoCambHac, pr.id_EstadoProyecto
-		FROM Proyectos pr
+		FROM proyectos pr
 		INNER JOIN detallealquiler da ON pr.id_Proyecto = da.id_Proyecto
 		WHERE pr.id_Parcela = '$parcela' AND pr.id_EstadoProyecto = 2 AND da.fechaCierre > '$fechaActual'");
 		while($listar = mysqli_fetch_array($consulta))

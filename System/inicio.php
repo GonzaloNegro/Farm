@@ -504,7 +504,7 @@ while($listar = mysqli_fetch_array($consulta)){
 						$dias = $horas / 24;
 						$diasRedondedos = floor($dias);
 
-						if($diasRedondedos < 30){
+						if($diasRedondedos < 30 AND $diasRedondedos > 0){
 							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li>";
 							echo "<hr/>";
 							$mensaje = $mensaje + "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li><br/>";
@@ -534,7 +534,7 @@ while($listar = mysqli_fetch_array($consulta)){
 						$dias2 = $horas2 / 24;
 						$diasRedondedos2 = floor($dias2);
 	
-						if($listar['id_EstadoProyecto'] == 1 AND $diasRedondedos2 < 30){
+						if($listar['id_EstadoProyecto'] == 1 AND $diasRedondedos2 < 30 AND $diasRedondedos2 > 0){
 							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
 							echo "<hr/>";
 							$mensaje = $mensaje + "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";

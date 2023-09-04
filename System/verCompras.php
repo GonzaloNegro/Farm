@@ -134,7 +134,7 @@ function ok(){
 
         if ($_POST["buscar"] == '' AND $_POST['id_Forma'] == '' AND $_POST['id_Moneda'] == '' AND $_POST['buscafechadesde'] == '' AND $_POST['buscafechahasta'] == ''){ 
                 $query ="SELECT c.fecha, c.nroFactura, p.proveedor, m.moneda, c.importeNeto, c.IVA, c.importeTotal, c.id_Compras, f.formaPago, t.tipoCompra
-                FROM Compras c
+                FROM compras c
                 LEFT JOIN proveedores p ON p.id_Proveedor = c.id_Proveedor
                 LEFT JOIN moneda m ON m.id_Moneda = c.id_Moneda
                 LEFT JOIN compraproyecto co ON co.id_Compras = c.id_Compras
@@ -143,7 +143,7 @@ function ok(){
         }else{
 
                 $query = "SELECT c.fecha, c.nroFactura, p.proveedor, m.moneda, c.importeNeto, c.IVA, c.importeTotal, c.id_Compras, f.formaPago, t.tipoCompra
-                FROM Compras c
+                FROM compras c
                 LEFT JOIN proveedores p ON p.id_Proveedor = c.id_Proveedor
                 LEFT JOIN moneda m ON m.id_Moneda = c.id_Moneda
                 LEFT JOIN compraproyecto co ON co.id_Compras = c.id_Compras
@@ -293,7 +293,7 @@ function ok(){
         </form>
 		<form id="formu" class="formOculto" action="../Exportar/ExcelCompras.php" method="POST">
 			<?php $consulta = "SELECT c.fecha, c.nroFactura, p.proveedor, t.tipoCompra, m.moneda, c.importeNeto, c.IVA, c.importeTotal, c.id_Compras, f.formaPago, c.tipoFactura, c.tipoCambio, c.puntoDeVenta, c.tipoDocEmisor, c.detalle, c.nroDocEmisor
-                FROM Compras c
+                FROM compras c
                 LEFT JOIN proveedores p ON p.id_Proveedor = c.id_Proveedor
                 LEFT JOIN moneda m ON m.id_Moneda = c.id_Moneda
                 LEFT JOIN formapago f ON f.id_Forma = c.id_Forma

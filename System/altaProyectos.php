@@ -160,7 +160,7 @@ function ValidarFechas()
               <select name="cmbEstado1" required id="estadoProyecto">
                   <option value="" selected disabled="cmbestado1">-Seleccione una-</option>
                   <?php
-                  $consulta= "SELECT * FROM estadoProyecto LIMIT 0,2";
+                  $consulta= "SELECT * FROM estadoproyecto LIMIT 0,2";
                   $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($datos_base));
                   ?>
                   <?php foreach ($ejecutar as $opciones): ?> 
@@ -168,16 +168,13 @@ function ValidarFechas()
                   <?php endforeach ?>
               </select>
           </div>
-<!--           <div class="labelInput">
-              <label for="name">Cantidad de Hectareas:</label>
-              <input type="number" name="nombre" id="prov" max="<?php echo $valor;?>" required>
-          </div> -->
+
           <div class="labelInput">
               <label for="name">Tipo de proyecto:</label>
               <select name="cmbTipoProyecto1"required>
                   <option value="" selected disabled="cmbTipoProyecto1">-Seleccione una-</option>
                   <?php
-                  $consulta= "SELECT * FROM tipoProyecto ORDER BY tipoProyecto ASC";
+                  $consulta= "SELECT * FROM tipoproyecto ORDER BY tipoProyecto ASC";
                   $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($datos_base));
                   ?>
                   <?php foreach ($ejecutar as $opciones): ?> 
@@ -262,7 +259,7 @@ function ValidarFechas()
           <select name="cmbCultivo" id="inpSiembra">
           <option value="" selected disabled="cmbCultivos">-Seleccione una-</option>
           <?php
-          $consulta= "SELECT * FROM Cultivos";
+          $consulta= "SELECT * FROM cultivos";
           $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($datos_base));
           ?>
           <?php foreach ($ejecutar as $opciones): ?> 
@@ -280,7 +277,7 @@ function ValidarFechas()
         <select name="cmbCategoria" required id="inp2Hacienda">
         <option value="" selected disabled="cmbcategoria">-Seleccione una-</option>
         <?php
-        $consulta= "SELECT * FROM Categoria";
+        $consulta= "SELECT * FROM categoria";
         $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($datos_base));
         ?>
         <?php foreach ($ejecutar as $opciones): ?> 

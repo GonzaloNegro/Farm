@@ -8,7 +8,6 @@ $fechaActual = date('Y-m-d');
 
 if (isset($_POST)){
 
-// Captura los datos ingresados en el formulario
 $fecha=$_POST['fecha'];
 $factura=$_POST['cmbTipoFactura'];  
 $puntoVenta=$_POST['ptoVenta'];
@@ -39,7 +38,6 @@ if(isset($_POST['nombreProyecto'])){
     mysqli_query($conexion, "INSERT INTO compraproyecto VALUES (DEFAULT, '$tic1', 0, 1)");
 }
 
-/* SUBIR ARCHIVO */
 if(file_exists($_FILES['fichero']['tmp_name'])){
     $url = '../archivos/compras/'.$nroFactura.".pdf";
 

@@ -16,7 +16,7 @@ if(isset($_POST['btn1'])){
 
     mysqli_query($conexion, "INSERT INTO proyectos VALUES(DEFAULT, '$parcela1', '$proyecto1', '$tipo1', '$cantidad1', '$estado1')");
 
-    					
+
     $header = 'Enviado desde Don Juan S.R.L.';
     $asunto = "Se ha creado un nuevo proyecto";
     $destinatario = 'luciladolce@hotmail.com';

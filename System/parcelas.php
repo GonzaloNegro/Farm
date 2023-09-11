@@ -82,8 +82,18 @@ $parcela = $_GET['no'];
 			$totalS = $row1['totalS'];
 			$totalHasS = $row1['totalHasS'];
 
-			$totalPr = $totalH + $totalS;
-			$totalHas = $totalHasH + $totalHasS;
+			
+			$sent1= "SELECT count(*) AS totalA, SUM(p.cantidadHas) AS totalHasA, p.id_EstadoProyecto
+			FROM proyectos p
+			LEFT JOIN detallealquiler da ON da.id_Proyecto = p.id_Proyecto
+			WHERE da.fechaCierre > '$fechaActual' AND p.id_EstadoProyecto = 2 AND p.id_Parcela = $parcela";
+			$resultado1 = $conexion->query($sent1);
+			$row1 = $resultado1->fetch_assoc();
+			$totalA = $row1['totalA'];
+			$totalHasA = $row1['totalHasA'];
+
+			$totalPr = $totalH + $totalS + $totalA;
+			$totalHas = $totalHasH + $totalHasS + $totalHasA;
 
 			$hasDisponibles = $listar['dimension'] - $totalHas;
 

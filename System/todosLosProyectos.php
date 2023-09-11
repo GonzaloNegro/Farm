@@ -25,7 +25,7 @@ while($listar = mysqli_fetch_array($consulta)){
 	}
 	//ABRIR PROYECTO DE HACIENDA AL LLEGAR LA FECHA DE INICIO
 	if($listar['id_Tipoproyecto'] == 1 AND $listar['id_EstadoProyecto'] == 1){//Hacienda
-		$sent= "SELECT * FROM detallehacienda WHERE id_Proyecto = '$proye' AND fechaInicio = '$fechaActual'";
+		$sent= "SELECT * FROM detallehacienda WHERE id_Proyecto = '$proye' AND fechaInicio <= '$fechaActual'";
 		$resultado = $conexion->query($sent);
 		$row = $resultado->fetch_assoc();
 		$idDetalleHaciendaIni = $row['id_DetalleHacienda'];
@@ -34,6 +34,8 @@ while($listar = mysqli_fetch_array($consulta)){
 		}
 	}
 	
+
+
 	//CERRAR PROYECTO DE SIEMBRA AL LLEGAR LA FECHA LIMITE
 	if($listar['id_Tipoproyecto'] == 2 AND $listar['id_EstadoProyecto'] == 2){//Siembra
 		$sent= "SELECT * FROM detallesiembra WHERE id_Proyecto = '$proye' AND fechaCierre <= '$fechaActual'";
@@ -46,10 +48,32 @@ while($listar = mysqli_fetch_array($consulta)){
 	}
 	//ABRIR PROYECTO DE SIEMBRA AL LLEGAR LA FECHA DE INICIO
 	if($listar['id_Tipoproyecto'] == 2 AND $listar['id_EstadoProyecto'] == 1){//Siembra
-		$sent= "SELECT * FROM detallesiembra WHERE id_Proyecto = '$proye' AND fechaInicio = '$fechaActual'";
+		$sent= "SELECT * FROM detallesiembra WHERE id_Proyecto = '$proye' AND fechaInicio <= '$fechaActual'";
 		$resultado = $conexion->query($sent);
 		$row = $resultado->fetch_assoc();
 		$idDetalleSiembraIni = $row['id_DetalleSiembra'];
+		if(isset($idDetalleSiembraIni)){
+			mysqli_query($conexion, "UPDATE proyectos SET id_EstadoProyecto  = 2 WHERE id_Proyecto = '$proye'");
+		}
+	}
+
+
+    	//CERRAR PROYECTO DE ALQUILER AL LLEGAR LA FECHA LIMITE
+	if($listar['id_Tipoproyecto'] == 3 AND $listar['id_EstadoProyecto'] == 2){//Alquiler
+		$sent= "SELECT * FROM detallealquiler WHERE id_Proyecto = '$proye' AND fechaCierre <= '$fechaActual'";
+		$resultado = $conexion->query($sent);
+		$row = $resultado->fetch_assoc();
+		$idDetalleSiembra = $row['id_DetalleAlquiler'];
+		if(isset($idDetalleSiembra)){
+			mysqli_query($conexion, "UPDATE proyectos SET id_EstadoProyecto  = 3 WHERE id_Proyecto = '$proye'");
+		}
+	}
+	//ABRIR PROYECTO DE ALQUILER AL LLEGAR LA FECHA DE INICIO
+	if($listar['id_Tipoproyecto'] == 3 AND $listar['id_EstadoProyecto'] == 1){//Alquiler
+		$sent= "SELECT * FROM detallealquiler WHERE id_Proyecto = '$proye' AND fechaInicio <= '$fechaActual'";
+		$resultado = $conexion->query($sent);
+		$row = $resultado->fetch_assoc();
+		$idDetalleSiembraIni = $row['id_DetalleAlquiler'];
 		if(isset($idDetalleSiembraIni)){
 			mysqli_query($conexion, "UPDATE proyectos SET id_EstadoProyecto  = 2 WHERE id_Proyecto = '$proye'");
 		}

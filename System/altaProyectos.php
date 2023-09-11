@@ -338,10 +338,6 @@ function ValidarFechas()
     </script>
     <script type="text/javascript">
         function recargarLista(){
-/*             var params = {
-                proyecto: "nombre1=" + $('#proyec').val(),
-                parcela: "cmbparcela1=" + $('#lista1').val()
-            }; */
             $.ajax({
                 type: "POST",
                 url: "./datosCarga.php",

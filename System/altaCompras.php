@@ -20,6 +20,21 @@ error_reporting(0);
 
     }
   </script>
+  
+  <script>
+        var general = document.getElementById('general');
+        var proye = document.getElementById('nombreProyecto');
+
+        window.onload = verificar();
+
+        function verificar() {
+            if(general.checked){
+                proye.required = false;
+            }else{
+                proye.required = true;
+            }
+        }
+  </script>
 
 <script>
     function alerta(campo) { 

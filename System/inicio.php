@@ -531,7 +531,7 @@ while($listar = mysqli_fetch_array($consulta)){
 						if($diasRedondedos < 30 AND $diasRedondedos > 0){
 							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li>";
 							echo "<hr/>";
-							$mensaje = $mensaje + "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li><br/>";
+
 							$cantidadRegistros++;
 						}
 
@@ -561,13 +561,20 @@ while($listar = mysqli_fetch_array($consulta)){
 						if($listar['id_EstadoProyecto'] == 1 AND $diasRedondedos2 < 30 AND $diasRedondedos2 > 0){
 							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
 							echo "<hr/>";
-							$mensaje = $mensaje + "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
+
 							$cantidadRegistros++;
 						}
 						
 					}
+					$consulta2=mysqli_query($conexion, "SELECT p.nombreProyecto, t.tipoProyecto FROM proyectos p 
+					LEFT JOIN tipoproyecto t ON p.id_tipoProyecto = t.id_tipoProyecto
+					WHERE p.id_Proyecto NOT IN (SELECT da.id_Proyecto FROM detallehacienda da) AND p.id_Proyecto NOT IN (SELECT ds.id_Proyecto FROM detallesiembra ds) AND p.id_Proyecto NOT IN (SELECT da.id_Proyecto FROM detallealquiler da)");
+					while($listar2 = mysqli_fetch_array($consulta2)){
+						echo "<li>El proyecto '<strong>$listar2[nombreProyecto]</strong>' aún no posee <strong><span style='color:green;'>Detalles</span></strong>.<br/>Por favor ingrese a <a href='./detalle$listar2[tipoProyecto].php'>Detalle $listar2[tipoProyecto]</a> para agregárselos.</li>";
+						echo "<hr/>";
+						$cantidadRegistros++;
+					}
 
-					
 
 					if($cantidadRegistros == 0){
 						echo "<p class='centrado--notif-contva'>No hay notificaciones</p>";

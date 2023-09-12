@@ -897,6 +897,15 @@ form{
 	background-color: rgb(255, 255, 255);
 }
 
+.centrado--stats--cont--detail10{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	width: 1320px; 
+	height: 400px;
+	box-shadow: 5px 5px 5px 5px rgba(165, 164, 164, 0.3);
+}
+
 .change{
 	padding: 0px;
 	display: none;
@@ -1048,7 +1057,7 @@ form{
 	.centrado--stats--cont--detail{
 		gap: 10px;
 	}
-	.centrado--stats--cont--detail, .centrado--stats--cont--detail2{
+	.centrado--stats--cont--detail, .centrado--stats--cont--detail2, .centrado--stats--cont--detail10{
 		width: 300px;
 	}
 }

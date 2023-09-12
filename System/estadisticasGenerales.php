@@ -19,9 +19,41 @@ error_reporting(0);
       google.charts.setOnLoadCallback(drawChart6);
       google.charts.setOnLoadCallback(drawChart7);
       google.charts.setOnLoadCallback(drawChart8);
+      
+      google.charts.setOnLoadCallback(drawChart10);
+
+
+      function drawChart10() {
+
+        var data10 = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+<?php    
+          $SQL = "SELECT SUM(c.importeTotal) AS TOTAL, YEAR(c.fecha) AS FECHA
+          FROM compraproyecto cp
+          LEFT JOIN compras c ON c.id_Compras = cp.id_Compras
+          WHERE cp.id_TipoCompra = 1
+          GROUP BY YEAR(c.fecha)";
+     
+          $consulta = mysqli_query($conexion, $SQL);
+          while ($resultado = mysqli_fetch_assoc($consulta)){
+            echo "['" .$resultado['FECHA'].' - $'.number_format($resultado['TOTAL'], 2, ',','.')."', " .$resultado['TOTAL']."],";
+          }
+?>
+        ]);
+
+        var options10 = {
+          title: 'Monto invertido en compras GENERALES por año'
+        };
+
+        var chart10 = new google.visualization.PieChart(document.getElementById('piechart10'));
+        chart10.draw(data10, options10);
+        }
+
+
+
+
 
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
 <?php    
@@ -295,6 +327,12 @@ error_reporting(0);
       <div class="centrado--titulo">
         <h1>Estadísticas generales</h1>		
       </div>
+      <div class="centrado--stats">
+        <div class="centrado--stats--cont">
+          <div class="centrado--stats--cont--detail10" id="piechart10"></div>
+        </div>
+      </div>
+
       <h2>Activos</h2>
 <!--       <div class="centrado--btn">
         <button class="btn btn-success" id="changeG">Ver Finalizados</button>

@@ -41,9 +41,9 @@ error_reporting(0);
     alert("Por favor, completa el campo "+campo) 
     }
     function validar_formulario(form){
-        if (form.nombreProyecto.value == "") { 
+/*         if (form.nombreProyecto.value == "") { 
             alerta('\"Asignar al proyecto\"'); form.nombreProyecto.focus(); return true; 
-            }
+            } */
         if (form.fecha.value == "") { 
             alerta('\"Fecha\"'); form.fecha.focus(); return true; 
             }
@@ -86,7 +86,7 @@ error_reporting(0);
             
             
             
-            if(form.nombreProyecto.value != "" && form.fecha.value != "" && form.cmbTipoFactura.value != "" && form.ptoVenta.value != "" && form.nroFactura.value != "" && form.cmbTipoDoc.value != "" && form.dni.value != "" && form.cmbMoneda.value != "" && form.tipoCambio.value != "" && form.impNeto.value != "" && form.iva.value != "" && form.impTotal.value != "" && form.detalle.value != "" && form.cmbFormaPago.value != ""){
+            if(form.fecha.value != "" && form.cmbTipoFactura.value != "" && form.ptoVenta.value != "" && form.nroFactura.value != "" && form.cmbTipoDoc.value != "" && form.dni.value != "" && form.cmbMoneda.value != "" && form.tipoCambio.value != "" && form.impNeto.value != "" && form.iva.value != "" && form.impTotal.value != "" && form.detalle.value != "" && form.cmbFormaPago.value != ""){
                 $(document).ready(function() {
                     $('#btnform').click(function() {
                         Swal.fire({

@@ -82,10 +82,13 @@ $tipoUsu = $row['id_tipoUsuario'];
                             </li>
                         </ul>
                     </li>
-					<?php if($tipoUsu == 1){;?>
 					<li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0a6111;">Gestión</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-item">
+                                <a class="nav-link " href="./datosPersonales.php">Mis datos</a>
+                            </li>
+                            <?php if($tipoUsu == 1){;?>
                             <li class="nav-item">
                                 <a class="nav-link " href="./usuarios.php">Usuarios</a>
                             </li>
@@ -98,9 +101,9 @@ $tipoUsu = $row['id_tipoUsuario'];
 							<li>
                                 <a class="nav-link " href="./cultivos.php">Cultivos</a>
                             </li>
+                            <?php };?>
                         </ul>
                     </li>
-					<?php };?>
 					<li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0a6111;">Estadísticas</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

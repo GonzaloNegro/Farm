@@ -17,7 +17,7 @@ $idUsu = $row['id_usuario'];
 $(document).ready(function() {
     $('#btnform').click(function() {
         Swal.fire({
-                title: "¿Está seguro de modificar sus datos de usuario?",
+                title: "¿Está seguro de modificar su contraseña?",
                 type: "warning",
                 showCancelButton: true,
                 showConfirmButton: true,
@@ -42,7 +42,7 @@ $(document).ready(function() {
 </script>
 <script type="text/javascript">
     function error(){
-        swal.fire(  {title: "El usuario ya se encuentra registrado!",
+        swal.fire(  {title: "La contraseña actual ingresada es incorrecta",
                 icon: "error",
                 showConfirmButton: true,
                 showCancelButton: false,
@@ -51,7 +51,7 @@ $(document).ready(function() {
 </script>
 <script type="text/javascript">
     function mod(){
-        swal.fire(  {title: "Datos modificados correctamente!",
+        swal.fire(  {title: "Contraseña modificada correctamente!",
                 icon: "success",
                 showConfirmButton: true,
                 showCancelButton: false,
@@ -74,25 +74,58 @@ $(document).ready(function() {
 
         ?>
         <form class="centrado--form--form" name="form_mod" id="form_mod" action="./modDatos.php" method="POST">
-			<div class="labelInput">
-				<label for="id">Usuario N°:</label>
-                <input type="text" name="id" id="id" class="readonly" value="<?php echo $idUsu; ?>" readonly>
-            </div>
             <div class="labelInput">
-                <label for="name">Usuario:</label>
-                <input type="text" name="usuario" id="prov" style="background-color: transparent;border: none;cursor: default;width: 80px;" value="<?php echo $usuario; ?>"  readonly>
+                <div>
+                    <h4>-Usuario N°:</h4>
+                </div>
+                <div>
+                    <input type="text" name="id" class="readonly" value="<?php echo $idUsu;?>" readonly>
+                </div>
             </div>
+            
             <div class="labelInput">
-                <label for="name">Nombre:</label>
-                <input type="text" name="nombre" id="prov" value="<?php echo $nombre; ?>" required>
+                <div>
+                    <h4>-Nombre usuario:</h4>
+                </div>
+                <div>
+                    <p><?php echo $usuario;?></p>
+                </div>
             </div>
+
             <div class="labelInput">
-                <label for="name">Apellido:</label>
-                <input type="text" name="apellido" id="prov" value="<?php echo $apellido; ?>"  required>
+                <div>
+                    <h4>-Nombre:</h4>
+                </div>
+                <div>
+                    <p><?php echo $nombre;?></p>
+                </div>
             </div>
+
             <div class="labelInput">
-                <label for="name">Contraseña:</label>
-                <input type="password" name="pass" id="prov" value="<?php echo $password; ?>"  required>
+                <div>
+                    <h4>-Apellido:</h4>
+                </div>
+                <div>
+                    <p><?php echo $apellido;?></p>
+                </div>
+            </div>
+
+            <div class="labelInput">
+                <div>
+                    <h4>-Contraseña actual:</h4>
+                </div>
+                <div>
+                    <input type="password" name="passActual" id="prov" required>
+                </div>
+            </div>
+
+            <div class="labelInput">
+                <div>
+                    <h4>-Contraseña nueva:</h4>
+                </div>
+                <div>
+                    <input type="password" name="passNueva" id="prov" required>
+                </div>
             </div>
             <div class="labelInputbtn" style="gap:5px;">
                 <button type="reset" class="btn btn-danger">Cancelar</button>

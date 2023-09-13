@@ -35,7 +35,7 @@ $tipoUsu = $row['id_tipoUsuario'];
 
 <header class="hea-pri" >
 	<div class="titPrincipal">
-		<h1>Don Juan S.R.L.</h1>
+		<h1>Campo Don Juan S.R.L.</h1>
 	</div>
     <nav class="navbar navbar-expand-lg navbar-light" style="border-bottom: 1px solid #0a6111;">
         <div class="container-fluid navpri">

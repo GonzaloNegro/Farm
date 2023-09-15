@@ -133,21 +133,23 @@ function ok(){
         $aKeyword = explode(" ", $_POST['buscar']);
 
         if ($_POST["buscar"] == '' AND $_POST['id_Forma'] == '' AND $_POST['id_Moneda'] == '' AND $_POST['buscafechadesde'] == '' AND $_POST['buscafechahasta'] == ''){ 
-                $query ="SELECT c.fecha, c.nroFactura, p.proveedor, m.moneda, c.importeNeto, c.IVA, c.importeTotal, c.id_Compras, f.formaPago, t.tipoCompra
+                $query ="SELECT c.fecha, c.nroFactura, p.proveedor, m.moneda, c.importeNeto, i.iva, c.importeTotal, c.id_Compras, f.formaPago, t.tipoCompra
                 FROM compras c
                 LEFT JOIN proveedores p ON p.id_Proveedor = c.id_Proveedor
                 LEFT JOIN moneda m ON m.id_Moneda = c.id_Moneda
                 LEFT JOIN compraproyecto co ON co.id_Compras = c.id_Compras
                 LEFT JOIN tipocompra t ON t.id_TipoCompra = co.id_TipoCompra
+                LEFT JOIN iva i ON i.id_Iva = c.id_Iva
                 LEFT JOIN formapago f ON f.id_Forma = c.id_Forma ";
         }else{
 
-                $query = "SELECT c.fecha, c.nroFactura, p.proveedor, m.moneda, c.importeNeto, c.IVA, c.importeTotal, c.id_Compras, f.formaPago, t.tipoCompra
+                $query = "SELECT c.fecha, c.nroFactura, p.proveedor, m.moneda, c.importeNeto, i.iva, c.importeTotal, c.id_Compras, f.formaPago, t.tipoCompra
                 FROM compras c
                 LEFT JOIN proveedores p ON p.id_Proveedor = c.id_Proveedor
                 LEFT JOIN moneda m ON m.id_Moneda = c.id_Moneda
                 LEFT JOIN compraproyecto co ON co.id_Compras = c.id_Compras
                 LEFT JOIN tipocompra t ON t.id_TipoCompra = co.id_TipoCompra
+                LEFT JOIN iva i ON i.id_Iva = c.id_Iva
                 LEFT JOIN formapago f ON f.id_Forma = c.id_Forma ";
 
                 if ($_POST["buscar"] != '' ){ 
@@ -239,7 +241,7 @@ function ok(){
                             <td><h4 style="font-size:14px; text-align:left; margin-left: 5px;"><?php echo $rowSql["tipoCompra"]; ?></h4></td>
 							<td><h4 style="font-size:14px; text-align:center;"><?php echo $rowSql["moneda"]; ?></h4></td>
 							<td><h4 style="font-size:14px; text-align:right; margin-right: 5px;"><?php echo "$".$impNeto; ?></h4></td>
-                            <td><h4 style="font-size:14px; text-align:right; margin-right: 5px;"><?php echo "$".$rowSql["IVA"]."%"; ?></h4></td>
+                            <td><h4 style="font-size:14px; text-align:right; margin-right: 5px;"><?php echo $rowSql["iva"]."%"; ?></h4></td>
                             <td><h4 style="font-size:14px; text-align:right; margin-right: 5px;"><?php echo "$".$total; ?></h4></td>
 							<td><h4 style="font-size:14px; text-align:left; margin-left: 5px;"><?php echo $rowSql["formaPago"]; ?></h4></td>
 							<?php echo "

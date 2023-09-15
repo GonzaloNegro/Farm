@@ -74,9 +74,6 @@ error_reporting(0);
         if (form.iva.value == "") { 
             alerta('\"IVA\"'); form.iva.focus(); return true; 
             }
-        if (form.impTotal.value == "") { 
-            alerta('\"Importe Total\"'); form.impTotal.focus(); return true; 
-            }
         if (form.detalle.value == "") { 
             alerta('\"Detalle\"'); form.detalle.focus(); return true; 
             }
@@ -86,7 +83,7 @@ error_reporting(0);
             
             
             
-            if(form.fecha.value != "" && form.cmbTipoFactura.value != "" && form.ptoVenta.value != "" && form.nroFactura.value != "" && form.cmbTipoDoc.value != "" && form.dni.value != "" && form.cmbMoneda.value != "" && form.tipoCambio.value != "" && form.impNeto.value != "" && form.iva.value != "" && form.impTotal.value != "" && form.detalle.value != "" && form.cmbFormaPago.value != ""){
+            if(form.fecha.value != "" && form.cmbTipoFactura.value != "" && form.ptoVenta.value != "" && form.nroFactura.value != "" && form.cmbTipoDoc.value != "" && form.dni.value != "" && form.cmbMoneda.value != "" && form.tipoCambio.value != "" && form.impNeto.value != "" && form.iva.value != "" && form.detalle.value != "" && form.cmbFormaPago.value != ""){
                 $(document).ready(function() {
                     $('#btnform').click(function() {
                         Swal.fire({
@@ -213,12 +210,17 @@ error_reporting(0);
                 <input type="number" name="impNeto" min="1" id="prov" required>
             </div>
             <div class="labelInput">
-                <label for="name">IVA:</label>
-                <input type="number" name="iva" min="1" id="prov" required>
-            </div>
-            <div class="labelInput">
-                <label for="name">Importe Total:</label>
-                <input type="number" name="impTotal" min="1" id="prov" required>
+              <label for="iva">IVA:</label>
+              <select name="iva"  required>
+                  <option value="" selected disabled="iva">-Seleccione una-</option>
+                  <?php
+                  $consulta= "SELECT * FROM iva ORDER BY iva ASC";
+                  $ejecutar= mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
+                  ?>
+                  <?php foreach ($ejecutar as $opciones): ?> 
+                  <option value="<?php echo $opciones['id_Iva']?>"><?php echo "%".$opciones['iva']?></option>
+                  <?php endforeach ?>
+                </select>
             </div>
             <div class="labelInput">
               <label for="name">Detalle:</label>

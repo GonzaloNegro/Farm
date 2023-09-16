@@ -499,7 +499,7 @@ while($listar = mysqli_fetch_array($consulta)){
 					$mensaje = "";
 
 					$cantidadRegistros = 0;
-					$consulta=mysqli_query($conexion, "SELECT p.id_Proyecto, p.nombreProyecto, ds.fechaCierre AS fcs, dh.fechaCierre AS fch, da.fechaCierre AS fca, t.tipoProyecto, ds.fechaInicio AS fis, dh.fechaInicio AS fih, da.fechaInicio AS fia, p.id_EstadoProyecto
+					$consulta=mysqli_query($conexion, "SELECT p.id_Proyecto, p.id_Parcela, p.nombreProyecto, ds.fechaCierre AS fcs, dh.fechaCierre AS fch, da.fechaCierre AS fca, t.tipoProyecto, ds.fechaInicio AS fis, dh.fechaInicio AS fih, da.fechaInicio AS fia, p.id_EstadoProyecto
 					FROM proyectos p 
 					LEFT JOIN detallesiembra ds ON ds.id_Proyecto = p.id_Proyecto 
 					LEFT JOIN detallehacienda dh ON dh.id_Proyecto = p.id_Proyecto
@@ -529,7 +529,7 @@ while($listar = mysqli_fetch_array($consulta)){
 						$diasRedondedos = floor($dias);
 
 						if($diasRedondedos < 30 AND $diasRedondedos > 0){
-							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong>.<br/><u>Días para el cierre</u>: $diasRedondedos</li>";
+							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:red;'>finalizar</span></strong> en la parcela $listar[id_Parcela].<br/><u>Días para el cierre</u>: $diasRedondedos</li>";
 							echo "<hr/>";
 
 							$cantidadRegistros++;
@@ -559,18 +559,18 @@ while($listar = mysqli_fetch_array($consulta)){
 						$diasRedondedos2 = floor($dias2);
 	
 						if($listar['id_EstadoProyecto'] == 1 AND $diasRedondedos2 < 30 AND $diasRedondedos2 > 0){
-							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong>.<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
+							echo "<li>El proyecto '<strong>$listar[nombreProyecto]</strong>' de $listar[tipoProyecto] está próximo a <strong><span style='color:green;'>Comenzar</span></strong> en la parcela $listar[id_Parcela].<br/><u>Días para el inicio</u>: $diasRedondedos2</li>";
 							echo "<hr/>";
 
 							$cantidadRegistros++;
 						}
 						
 					}
-					$consulta2=mysqli_query($conexion, "SELECT p.nombreProyecto, t.tipoProyecto FROM proyectos p 
+					$consulta2=mysqli_query($conexion, "SELECT p.nombreProyecto, t.tipoProyecto, p.id_Parcela FROM proyectos p 
 					LEFT JOIN tipoproyecto t ON p.id_tipoProyecto = t.id_tipoProyecto
 					WHERE p.id_Proyecto NOT IN (SELECT da.id_Proyecto FROM detallehacienda da) AND p.id_Proyecto NOT IN (SELECT ds.id_Proyecto FROM detallesiembra ds) AND p.id_Proyecto NOT IN (SELECT da.id_Proyecto FROM detallealquiler da)");
 					while($listar2 = mysqli_fetch_array($consulta2)){
-						echo "<li>El proyecto '<strong>$listar2[nombreProyecto]</strong>' aún no posee <strong><span style='color:green;'>Detalles</span></strong>.<br/>Por favor ingrese a <a href='./detalle$listar2[tipoProyecto].php'>Detalle $listar2[tipoProyecto]</a> para agregárselos.</li>";
+						echo "<li>El proyecto '<strong>$listar2[nombreProyecto]</strong>' aún no posee <strong><span style='color:green;'>Detalles</span></strong> en la parcela $listar2[id_Parcela].<br/>Por favor ingrese a <a href='./detalle$listar2[tipoProyecto].php'>Detalle $listar2[tipoProyecto]</a> para agregárselos.</li>";
 						echo "<hr/>";
 						$cantidadRegistros++;
 					}

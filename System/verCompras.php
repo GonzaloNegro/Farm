@@ -294,12 +294,13 @@ function ok(){
             <input type="text" name="sql" class="oculto" readonly="readonly" value="<?php echo $query;?>">
         </form>
 		<form id="formu" class="formOculto" action="../Exportar/ExcelCompras.php" method="POST">
-			<?php $consulta = "SELECT c.fecha, c.nroFactura, p.proveedor, t.tipoCompra, m.moneda, c.importeNeto, c.IVA, c.importeTotal, c.id_Compras, f.formaPago, c.tipoFactura, c.tipoCambio, c.puntoDeVenta, c.tipoDocEmisor, c.detalle, c.nroDocEmisor
+			<?php $consulta = "SELECT c.fecha, c.nroFactura, p.proveedor, t.tipoCompra, m.moneda, c.importeNeto, i.iva, c.importeTotal, c.id_Compras, f.formaPago, c.tipoFactura, c.tipoCambio, c.puntoDeVenta, c.tipoDocEmisor, c.detalle, c.nroDocEmisor
                 FROM compras c
                 LEFT JOIN proveedores p ON p.id_Proveedor = c.id_Proveedor
                 LEFT JOIN moneda m ON m.id_Moneda = c.id_Moneda
                 LEFT JOIN formapago f ON f.id_Forma = c.id_Forma
                 LEFT JOIN compraproyecto co ON co.id_Compras = c.id_Compras
+                LEFT JOIN iva i ON i.id_Iva = c.id_Iva
                 LEFT JOIN tipocompra t ON t.id_TipoCompra = co.id_TipoCompra";?>
 			<input type="text" name="sql" class="oculto" readonly="readonly" value="<?php echo $consulta;?>">
 		</form>	

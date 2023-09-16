@@ -66,7 +66,7 @@ include('../Modelo/Conexion.php');
 			$html .= '<td>$' . $row_msg_contatos["tipoCambio"] . '</td>';
             $html .= '<td>' . $row_msg_contatos["moneda"]. '</td>';
             $html .= '<td>$' . $impNeto. '</td>';
-			$html .= '<td>' . $row_msg_contatos["IVA"] . '%</td>';
+			$html .= '<td>' . $row_msg_contatos["iva"] . '%</td>';
             $html .= '<td>$' . $total. '</td>';
             $html .= '<td>' . $row_msg_contatos["formaPago"]. '</td>';
 			$html .= '</tr>';

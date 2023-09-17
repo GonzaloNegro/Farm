@@ -35,7 +35,7 @@ function Consultar($no_id)
 		$filas['tipoCambio'],/* 8 */
 		$filas['id_Moneda'],/* 9 */
 		$filas['importeNeto'],/* 10 */
-		$filas['IVA'],/* 11 */
+		$filas['id_Iva'],/* 11 */
 		$filas['importeTotal'],/* 12 */
 		$filas['detalle'],/* 13 */
 		$filas['id_Forma'],/* 14 */
@@ -231,7 +231,13 @@ $(document).ready(function() {
                 <h4>-IVA:</h4>
             </div>
             <div>
-                <p><?php echo $consulta[11]."%";?></p>
+                <p><?php 
+                    $sent= "SELECT iva FROM iva WHERE id_Iva = $consulta[11]";
+                    $resultado = $conexion->query($sent);
+                    $row = $resultado->fetch_assoc();
+                    $iva = $row['iva'];
+                
+                echo $iva."%";?></p>
             </div>
         </div>
 

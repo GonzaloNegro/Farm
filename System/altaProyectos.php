@@ -302,11 +302,11 @@ function ValidarFechas()
       </div>
       <div class="labelInput">
           <label for="name">Tipo de Cambio:</label>
-          <input type="number" name="tipoCambio" min="1" id="prov" required>
+          <input type="number" name="tipoCambio" min="1" id="prov" step=".01" required>
       </div>
       <div class="labelInput">
           <label for="name">Inversion inicial:</label>
-          <input name="txtInversion" type="number" min="1" required /> 
+          <input name="txtInversion" type="number" min="1" step=".01" required /> 
       </div>
       <div class="labelInput" id="arch">
           <label for="name">Subir archivo:</label>

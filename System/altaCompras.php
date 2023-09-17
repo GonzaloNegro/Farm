@@ -202,12 +202,12 @@ error_reporting(0);
                 </select>
             </div>
             <div class="labelInput">
-                <label for="name">Tipo de Cambio:</label>
-                <input type="number" name="tipoCambio" min="1" id="prov" required>
+                <label for="name">Tipo de Cambio*:</label>
+                <input type="number" name="tipoCambio" min="1" id="prov" step=".01" required>
             </div>
             <div class="labelInput">
                 <label for="name">Importe Neto:</label>
-                <input type="number" name="impNeto" min="1" id="prov" required>
+                <input type="number" name="impNeto" min="1" id="prov" step=".01" required>
             </div>
             <div class="labelInput">
               <label for="iva">IVA:</label>
@@ -242,6 +242,9 @@ error_reporting(0);
             <div class="labelInput">
                 <label for="name">Subir Archivo:</label>
                 <input type="file" name="fichero" size="150" id="archivo" accept="application/pdf">
+            </div>
+            <div class="labelInput" style="width:100%;">
+                <a href="https://www.bna.com.ar/Personas" target="_blank" style="width:100%;display: flex;justify-content:center;"><p>*Cotización USD divisa venta Banco Nación</p></a>
             </div>
 
             <div class="labelInputbtn" style="gap:5px;">

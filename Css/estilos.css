@@ -933,6 +933,7 @@ form{
 	.navbar{
 		padding: 5px;
 		min-width: 320px;
+		margin-top: 40px;
 	}
 	.navpri{
 		padding: 0px;
@@ -942,6 +943,9 @@ form{
 	}
 	.hea-pri{
 		min-width: 320px;
+	}
+	.exit{
+		font-size: 14px;
 	}
 
 

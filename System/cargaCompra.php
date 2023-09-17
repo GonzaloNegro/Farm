@@ -22,22 +22,29 @@ $iva=$_POST['iva'];
 $detalle=$_POST['detalle'];
 $formaPago=$_POST['cmbFormaPago'];
 
-
-/* CALCULO DEL IMPORTE TOTAL */
-$sql = "SELECT * FROM iva WHERE id_Iva = '$iva'";
-$resultado = $conexion->query($sql);
-$row = $resultado->fetch_assoc();
-$ivanro = $row['iva'];
-
-$ivanro=str_replace(',','',$ivanro); 
-
-if($ivanro ==  105){
-    $ivaFinal = $ivanro / 1000;
+if($factura == "C"){
+    $iva = 4;
+    $importeTotal = $importeNeto;
 }else{
-    $ivaFinal = $ivanro / 100;
+/* CALCULO DEL IMPORTE TOTAL */
+    $sql = "SELECT * FROM iva WHERE id_Iva = '$iva'";
+    $resultado = $conexion->query($sql);
+    $row = $resultado->fetch_assoc();
+    $ivanro = $row['iva'];
+
+    $ivanro=str_replace(',','',$ivanro); 
+
+    if($ivanro ==  105){
+        $ivaFinal = $ivanro / 1000;
+    }else{
+        $ivaFinal = $ivanro / 100;
+    }
+
+    $importeTotal = $importeNeto + ($importeNeto * $ivaFinal);
 }
 
-$importeTotal = $importeNeto + ($importeNeto * $ivaFinal);
+
+
 
 
 mysqli_query($conexion, "INSERT INTO compras VALUES (DEFAULT, '$fecha','$factura','$puntoVenta','$nroFactura','$tipoDoc','$dni','$proveedor','$tipoCambio', '$moneda','$importeNeto','$iva','$importeTotal','$detalle','$formaPago')");

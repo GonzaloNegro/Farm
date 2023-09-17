@@ -252,7 +252,7 @@ $(document).ready(function() {
 
         <div class="labelInput">
             <div>
-                <h4>-Tipo de cambio:</h4>
+                <h4>-Tipo de cambio*:</h4>
             </div>
             <div>
                 <p><?php 
@@ -796,7 +796,7 @@ if($valorProyecto == 3){//Siembra
         </div>
         <?php }?>
 
-        <p>*Cotizacion divisa venta Banco Nacion</p>
+        <a href="https://www.bna.com.ar/Personas" target="_blank"><p>*Cotización USD divisa venta Banco Nación</p></a>
     </form>
 
     <h3>Compras</h3>
